@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manage Context"
+  short_description: "Keep long Codex tasks precise and lean"
+  default_prompt: "Use $manage-context to run this long task with VCC checkpoints and masked observations."

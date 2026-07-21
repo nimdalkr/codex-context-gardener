@@ -1,0 +1,65 @@
+{
+  "description": "Context Gardener lifecycle hooks for VCC reloads, observation masking, bounded pruning, and subagent handoffs.",
+  "hooks": {
+    "SessionStart": [{
+      "matcher": "startup|resume|clear|compact",
+      "hooks": [{
+        "type": "command",
+        "command": "sh \"$PLUGIN_ROOT/scripts/run-hook.sh\" session-start",
+        "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%PLUGIN_ROOT%\\scripts\\run-hook.ps1\" session-start",
+        "timeout": 15,
+        "statusMessage": "Loading the Context Gardener checkpoint"
+      }]
+    }],
+    "PostToolUse": [{
+      "matcher": "*",
+      "hooks": [{
+        "type": "command",
+        "command": "sh \"$PLUGIN_ROOT/scripts/run-hook.sh\" post-tool",
+        "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%PLUGIN_ROOT%\\scripts\\run-hook.ps1\" post-tool",
+        "timeout": 30,
+        "statusMessage": "Gardening the latest observation"
+      }]
+    }],
+    "PreCompact": [{
+      "matcher": "manual|auto",
+      "hooks": [{
+        "type": "command",
+        "command": "sh \"$PLUGIN_ROOT/scripts/run-hook.sh\" pre-compact",
+        "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%PLUGIN_ROOT%\\scripts\\run-hook.ps1\" pre-compact",
+        "timeout": 15,
+        "statusMessage": "Snapshotting the VCC before compaction"
+      }]
+    }],
+    "PostCompact": [{
+      "matcher": "manual|auto",
+      "hooks": [{
+        "type": "command",
+        "command": "sh \"$PLUGIN_ROOT/scripts/run-hook.sh\" post-compact",
+        "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%PLUGIN_ROOT%\\scripts\\run-hook.ps1\" post-compact",
+        "timeout": 15,
+        "statusMessage": "Pruning the active observation ledger"
+      }]
+    }],
+    "SubagentStart": [{
+      "matcher": "*",
+      "hooks": [{
+        "type": "command",
+        "command": "sh \"$PLUGIN_ROOT/scripts/run-hook.sh\" subagent-start",
+        "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%PLUGIN_ROOT%\\scripts\\run-hook.ps1\" subagent-start",
+        "timeout": 15,
+        "statusMessage": "Preparing a bounded subagent handoff"
+      }]
+    }],
+    "SubagentStop": [{
+      "matcher": "*",
+      "hooks": [{
+        "type": "command",
+        "command": "sh \"$PLUGIN_ROOT/scripts/run-hook.sh\" subagent-stop",
+        "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%PLUGIN_ROOT%\\scripts\\run-hook.ps1\" subagent-stop",
+        "timeout": 15,
+        "statusMessage": "Checking the subagent handoff"
+      }]
+    }]
+  }
+}

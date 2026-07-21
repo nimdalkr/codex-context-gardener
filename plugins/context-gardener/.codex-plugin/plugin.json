@@ -1,0 +1,38 @@
+{
+  "name": "context-gardener",
+  "version": "0.1.0",
+  "description": "Keep long Codex tasks precise with VCC checkpoints, observation masking, and bounded pruning.",
+  "author": {
+    "name": "Nimdal",
+    "url": "https://github.com/nimdalkr"
+  },
+  "homepage": "https://github.com/nimdalkr/codex-context-gardener",
+  "repository": "https://github.com/nimdalkr/codex-context-gardener",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "context-management",
+    "vcc",
+    "observation-masking",
+    "context-pruning"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Context Gardener",
+    "shortDescription": "Keep long Codex tasks precise and lean.",
+    "longDescription": "Context Gardener combines structured VCC checkpoints, deterministic masking of oversized tool observations, and bounded state pruning for long-running and multi-agent Codex work.",
+    "developerName": "Nimdal",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/nimdalkr/codex-context-gardener",
+    "defaultPrompt": [
+      "Use Context Gardener to keep this long task precise and lean.",
+      "Create a VCC checkpoint before delegating this work.",
+      "Mask large observations and keep only actionable evidence."
+    ],
+    "brandColor": "#3F7C6A"
+  }
+}
